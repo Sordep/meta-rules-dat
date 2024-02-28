@@ -16,6 +16,7 @@ list=($(./sing-box geosite list | sed 's/ (.*)$//g'))
 mkdir -p geosite
 for ((i = 0; i < ${#list[@]}; i++)); do
 	./sing-box geosite export ${list[i]} -o ./geosite/${list[i]}.json
+ 	sed -i 's/include:xiaomitv-ads//g' ./geosite/${list[i]}.json
 	./sing-box rule-set compile ./geosite/${list[i]}.json -o ./geosite/${list[i]}.srs
 done
 
